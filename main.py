@@ -1,3 +1,4 @@
+import sys
 from stats import number_of_words
 from stats import character_ocurrence
 from stats import sorted_dictionaries
@@ -9,7 +10,12 @@ def get_book_text(filepath):
     return contents
 
 def main():
-    relative_path_to_book = 'books/frankenstein.txt'
+
+    if len(sys.argv) < 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    relative_path_to_book = sys.argv[1]  #'books/frankenstein.txt'
     word_count = number_of_words(get_book_text(relative_path_to_book))
     char_count = character_ocurrence(get_book_text(relative_path_to_book))
     sorted_dict_list = sorted_dictionaries(character_ocurrence(get_book_text(relative_path_to_book)))
